@@ -1,0 +1,46 @@
+CS372 Project 1
+
+George Meier
+Bradley Morton
+
+https://github.com/bradleymorton/Battleship.git
+
+Feature 1
+    Can pley basic game, includes basic AI
+        10x10 grid
+        Ships x5
+            Carrier     5 holes
+            Battleship  4 holes
+            Cruiser     3 holes
+            Sub         3 holes
+            Destroyer   2 holes
+        
+Feature 2
+    GUI
+        Display ships, shots with icons
+        turn counter
+
+Feature 3
+    Non-aweful AI
+        Track hits
+        if success then attack adjacent locations
+        Diffuculty setting (randomness degree)
+
+Feature 4
+    Interesting/Pretty GUI
+        Skins/Custom
+
+Feature 5
+    Spice up game
+        Variable size grid
+        Variable number of ships
+        Ramming speed
+        Special attacks (5 spot, 3 in a row, tracking, etc..) 
+        Special ships
+
+Feature 6
+    Pretty interface
+        Animations (hit)
+        Sound
+        Theme music
+
