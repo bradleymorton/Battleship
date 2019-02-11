@@ -6,7 +6,7 @@ Bradley Morton
 https://github.com/bradleymorton/Battleship.git
 
 Feature 1
-    Can pley basic game, includes basic AI
+    Can play basic game, includes basic AI
         10x10 grid
         Ships x5
             Carrier     5 holes
@@ -18,10 +18,10 @@ Feature 1
 Feature 2
     GUI
         Display ships, shots with icons
-        turn counter
+        Turn counter
 
 Feature 3
-    Non-aweful AI
+    Non-awful AI
         Track hits
         if success then attack adjacent locations
         Diffuculty setting (randomness degree)
