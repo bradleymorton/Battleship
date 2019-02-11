@@ -3,8 +3,10 @@ CS372 Project 1
 George Meier
 Bradley Morton
 
-https://github.com/bradleymorton/Battleship.git
-
+Git hub
+    https://github.com/bradleymorton/Battleship.git
+    
+--------------------------------------------------------------------------------
 Feature 1
     Can play basic game, includes basic AI
         10x10 grid
@@ -43,4 +45,27 @@ Feature 6
         Animations (hit)
         Sound
         Theme music
+        
+--------------------------------------------------------------------------------        
+Feature Difficulty (1-10)
+1       5
+2       8
+3       2
+4       10
+5       6
+6       9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
