@@ -26,27 +26,40 @@ class Game():
 
     def place(self,team,x,y,direction,letter):
         if team == "player":
-            playerShipBoard[x][y] = letter
-        if team == "ai":
-            aiShipBoard[[x], [y]] = letter
-
+            if letter == 'c' :
+                if direction == 'n' and validSpot(x,y) and validSpot(x,y+1)and validSpot(x,y+2) and validSpot(x,y+3) and validSpot(x,y+4):
+                    for i in range(0,5):
+                     playerShipBoard[x][y+i] = letter
+                elif direction == 's' and validSpot(x,y) and validSpot(x,y-1)and validSpot(x,y-2) and validSpot(x,y-3) and validSpot(x,y-4):
+                    for i in range(0,5):
+                     playerShipBoard[x][y-i] = letter
+                elif direction == 'e' and validSpot(x,y) and validSpot(x+1,y)and validSpot(x+2,y) and validSpot(x+3,y) and validSpot(x+4,y):
+                    for i in range(0,5):
+                     playerShipBoard[x+i][y] = letter
+                elif direction == 'w' and validSpot(x,y) and validSpot(x-1,y)and validSpot(x-2,y) and validSpot(x-3,y) and validSpot(x-4,y):
+                    for i in range(0,5):
+                     playerShipBoard[x-i][y] = letter
+            elif letter == 'b':
+            elif letter == 'r':
+            elif letter == 's':
+            elif letter == 'd' :
         return
 
     def fire(self,team,x,y):
         if team == "player":
-            if validSpot(x,y) and aiShipBoard[x][y] == letter: # hit
+            if validSpot(x,y) and aiShipBoard[x][y] == letter : # hit     FIX!!!!!!
                 playerHitCount          += 1
                 playerTargetBoard[x][y] = 'X'
                 aiShipbaord[x][y]       = 'X'
-            else if validSpot(x,y):
+            elif validSpot(x,y):                                # miss
                 playerTargetBoard[x][y] = '@'
                 aiShipbaord[x][y]       = '@'
         if team == "ai":
-            if validSpot(x,y) and playerShipBoard[x][y] == letter: # hit
+            if validSpot(x,y) and playerShipBoard[x][y] == letter : # hit   FIX!!!!!!!!
                 aiHitCount              += 1
                 aiTargetBoard[x][y]     = 'X'
                 playerShipbaord[x][y]   = 'X'
-            else if validSpot(x,y)
+            elif validSpot(x,y):                                    # miss
                 playerTargetBoard[x][y] = '@'
                 aiShipbaord[x][y]       = '@'
             return
