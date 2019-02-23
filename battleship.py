@@ -170,7 +170,7 @@ class Game():
             elif self.validSpot(x,y):                                # miss
                 self.playerTargetBoard[x][y] = '@'
                 self.aiShipbaord[x][y]       = '@'
-        if team == "ai":
+        elif team == "ai":
             if self.validSpot(x,y) and self.playerShipBoard[x][y] in ('c','b','r','s','d') : # hit
                 self.aiHitCount              += 1
                 self.aiTargetBoard[x][y]     = 'X'
