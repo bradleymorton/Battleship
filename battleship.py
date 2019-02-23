@@ -3,19 +3,19 @@
 
 class Game():
     def __init__(self):
-		boardSize = 10
-		board = [['*']*boardSize, ['*']*boardSize]
-		playerShipBoard     = board
-		playerTargetBoard   = board
-		aiShipBoard         = board
-		aiTargetBoard       = board
+        boardSize = 10
+        board = [['*']*boardSize, ['*']*boardSize]
+        playerShipBoard     = board
+        playerTargetBoard   = board
+        aiShipBoard         = board
+        aiTargetBoard       = board
 
-		playerHitCount  = 0
-		aiHitCount      = 0
-		playGame = True
-		winner = ""
-		playerShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']] #fix later
-		aiShips     = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]
+        playerHitCount  = 0
+        aiHitCount      = 0
+        playGame = True
+        winner = ""
+        playerShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']] #fix later
+        aiShips     = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]
 
     def validSpot(self,x,y): # only checks if on board
         validSpot = False
@@ -38,11 +38,11 @@ class Game():
                 elif direction == 'w' and validSpot(x,y) and validSpot(x-1,y)and validSpot(x-2,y) and validSpot(x-3,y) and validSpot(x-4,y):
                     for i in range(0,5):
                      playerShipBoard[x-i][y] = letter
-			elif letter == 'b':
-            elif letter == 'r':
-			elif letter == 's':
-			elif letter == 'd' :
-        return
+            # elif letter == 'b' :
+            # elif letter == 'r' :
+            # elif letter == 's' :
+            # elif letter == 'd' :
+                return
 
     def fire(self,team,x,y):
         if team == "player":
@@ -74,17 +74,18 @@ class Game():
 
 
 def draw(self, team):
-	if team == player:
-		print("This is the target board")
-		for x in range(boardSize):
-			for y in range(boardSize):
-				print(playerTargetBoard[x][y])
-			print("\n")
-		print("This is your board")
-		for x in range(boardSize):
-			for y in range(boardSize):
-				print(playerShipBoard[x][y])
-			print("\n")
+    if team == player:
+        print("This is the target board")
+        for x in range(boardSize):
+            for y in range(boardSize):
+                print(playerTargetBoard[x][y])
+            print("\n")
+        print("This is your board")
+        for x in range(boardSize):
+            for y in range(boardSize):
+                print(playerShipBoard[x][y])
+            print("\n")
+    return
 
 
     return
