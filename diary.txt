@@ -6,6 +6,6 @@ Bradley and George: pen and paper plan out functions needed- Monday Feb 18 16:30
 
 Bradley and George: pair programming most of environmental objects complete- Tuesday Feb 19 20:00 to 22:00
 
-Bradley and George: pair programming and cursing at python3- Friday Feb 22 13:50 - 
+Bradley and George: pair programming and cursing at python3- Friday Feb 22 13:30 - 16:30
 
-running total time: 4h25m not updated
+running total time: 5h25m
