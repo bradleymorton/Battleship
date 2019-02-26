@@ -10,4 +10,6 @@ Bradley and George: pair programming and cursing at python3- Friday Feb 22 13:30
 
 George mostly playable game -Friday Feb 22 35min
 
+Bradley and George: pair programming squashing bugs and cursing at python3- Monday Feb 25 16:30 to 
+
 running total time: 6h
