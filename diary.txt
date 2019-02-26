@@ -8,4 +8,6 @@ Bradley and George: pair programming most of environmental objects complete- Tue
 
 Bradley and George: pair programming and cursing at python3- Friday Feb 22 13:30 - 16:30
 
-running total time: 5h25m
+George mostly playable game -Friday Feb 22 35min
+
+running total time: 6h
