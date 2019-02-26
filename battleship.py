@@ -15,6 +15,9 @@ class Game():
         self.aiShipBoard         = [["*" for i in range(self.boardSize)] for j in range(self.boardSize)]
         self.aiTargetBoard       = [["*" for i in range(self.boardSize)] for j in range(self.boardSize)]
 
+        self.playerShipPlaced = 0
+        self.aiShipPlaced = 0
+
         self.playerFireList = []
         self.aiFireList = []
 
@@ -53,137 +56,152 @@ class Game():
             valid = True
         return valid
 
-    def place(self, team, x, y, direction, letter):
+    def validPlacementPlayer(self, x, y):
+        if self.validSpotPlayer(x, y) == False:
+            return False
+        elif self.playerShipBoard[x][y] != "*":
+            return False
+        return True
+
+    def validPlacementAi(self, x, y):
+        if self.validSpotAi(x, y) == False:
+            return False
+        elif self.aiShipBoard[x][y] != "*":
+            return False
+        return True
+
+
+    def place(self, team, x, y, direction, letter): #n, s flip
         if team == "player":
             if letter == 'c' :
-                if direction == 'n' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x, y + 1)and self.validSpotPlayer(x, y + 2) and self.validSpotPlayer(x, y + 3) and self.validSpotPlayer(x, y + 4):
+                if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1)and self.validPlacementPlayer(x, y + 2) and self.validPlacementPlayer(x, y + 3) and self.validPlacementPlayer(x, y + 4):
                     for i in range(0,5):
                         self.playerShipBoard[x][y+i] = letter
-                elif direction == 's' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x, y - 1)and self.validSpotPlayer(x, y - 2) and self.validSpotPlayer(x, y - 3) and self.validSpotPlayer(x, y - 4):
+                elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1)and self.validPlacementPlayer(x, y - 2) and self.validPlacementPlayer(x, y - 3) and self.validPlacementPlayer(x, y - 4):
                     for i in range(0,5):
                         self.playerShipBoard[x][y-i] = letter
-                elif direction == 'e' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x + 1, y)and self.validSpotPlayer(x + 2, y) and self.validSpotPlayer(x + 3, y) and self.validSpotPlayer(x + 4, y):
+                elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y)and self.validPlacementPlayer(x + 2, y) and self.validPlacementPlayer(x + 3, y) and self.validPlacementPlayer(x + 4, y):
                     for i in range(0,5):
                         self.playerShipBoard[x+i][y] = letter
-                elif direction == 'w' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x - 1, y)and self.validSpotPlayer(x - 2, y) and self.validSpotPlayer(x - 3, y) and self.validSpotPlayer(x - 4, y):
+                elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y)and self.validPlacementPlayer(x - 2, y) and self.validPlacementPlayer(x - 3, y) and self.validPlacementPlayer(x - 4, y):
                     for i in range(0,5):
                         self.playerShipBoard[x-i][y] = letter
             elif letter == 'b':
-                if direction == 'n' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x, y + 1)and self.validSpotPlayer(x, y + 2) and self.validSpotPlayer(x, y + 3):
+                if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1)and self.validPlacementPlayer(x, y + 2) and self.validPlacementPlayer(x, y + 3):
                     for i in range(0,4):
                         self.playerShipBoard[x][y+i] = letter
-                elif direction == 's' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x, y - 1)and self.validSpotPlayer(x, y - 2) and self.validSpotPlayer(x, y - 3):
+                elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1)and self.validPlacementPlayer(x, y - 2) and self.validPlacementPlayer(x, y - 3):
                     for i in range(0,4):
                         self.playerShipBoard[x][y-i] = letter
-                elif direction == 'e' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x + 1, y)and self.validSpotPlayer(x + 2, y) and self.validSpotPlayer(x + 3, y):
+                elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y)and self.validPlacementPlayer(x + 2, y) and self.validPlacementPlayer(x + 3, y):
                     for i in range(0,4):
                         self.playerShipBoard[x+i][y] = letter
-                elif direction == 'w' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x - 1, y)and self.validSpotPlayer(x - 2, y) and self.validSpotPlayer(x - 3, y):
+                elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y)and self.validPlacementPlayer(x - 2, y) and self.validPlacementPlayer(x - 3, y):
                     for i in range(0,4):
                         self.playerShipBoard[x-i][y] = letter
             elif letter == 'r':
-                if direction == 'n' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x, y + 1)and self.validSpotPlayer(x, y + 2):
+                if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1)and self.validPlacementPlayer(x, y + 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y+i] = letter
-                elif direction == 's' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x, y - 1)and self.validSpotPlayer(x, y - 2):
+                elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1)and self.validPlacementPlayer(x, y - 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y-i] = letter
-                elif direction == 'e' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x + 1, y)and self.validSpotPlayer(x + 2, y):
+                elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y)and self.validPlacementPlayer(x + 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x+i][y] = letter
-                elif direction == 'w' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x - 1, y)and self.validSpotPlayer(x - 2, y):
+                elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y)and self.validPlacementPlayer(x - 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x-i][y] = letter
             elif letter == 's':
-                if direction == 'n' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x, y + 1)and self.validSpotPlayer(x, y + 2):
+                if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1)and self.validPlacementPlayer(x, y + 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y+i] = letter
-                elif direction == 's' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x, y - 1)and self.validSpotPlayer(x, y - 2):
+                elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1)and self.validPlacementPlayer(x, y - 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y-i] = letter
-                elif direction == 'e' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x + 1, y)and self.validSpotPlayer(x + 2, y):
+                elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y)and self.validPlacementPlayer(x + 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x+i][y] = letter
-                elif direction == 'w' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x - 1, y)and self.validSpotPlayer(x - 2, y):
+                elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y)and self.validPlacementPlayer(x - 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x-i][y] = letter
             elif letter == 'd':
-                if direction == 'n' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x, y + 1):
+                if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1):
                     for i in range(0,2):
                         self.playerShipBoard[x][y+i] = letter
-                elif direction == 's' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x, y - 1):
+                elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1):
                     for i in range(0,2):
                         self.playerShipBoard[x][y-i] = letter
-                elif direction == 'e' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x + 1, y):
+                elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y):
                     for i in range(0,2):
                         self.playerShipBoard[x+i][y] = letter
-                elif direction == 'w' and self.validSpotPlayer(x, y) and self.validSpotPlayer(x - 1, y):
+                elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y):
                     for i in range(0,2):
                         self.playerShipBoard[x-i][y] = letter
         elif team == "ai":
             if letter == 'c' :
-                if direction == 'n' and self.validSpotAi(x, y) and self.validSpotAi(x, y + 1)and self.validSpotAi(x, y + 2) and self.validSpotAi(x, y + 3) and self.validSpotAi(x, y + 4):
+                if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1)and self.validPlacementAi(x, y + 2) and self.validPlacementAi(x, y + 3) and self.validPlacementAi(x, y + 4):
                     for i in range(0,5):
                         self.aiShipBoard[x][y+i] = letter
-                elif direction == 's' and self.validSpotAi(x, y) and self.validSpotAi(x, y - 1)and self.validSpotAi(x, y - 2) and self.validSpotAi(x, y - 3) and self.validSpotAi(x, y - 4):
+                elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1)and self.validPlacementAi(x, y - 2) and self.validPlacementAi(x, y - 3) and self.validPlacementAi(x, y - 4):
                     for i in range(0,5):
                         self.aiShipBoard[x][y-i] = letter
-                elif direction == 'e' and self.validSpotAi(x, y) and self.validSpotAi(x + 1, y)and self.validSpotAi(x + 2, y) and self.validSpotAi(x + 3, y) and self.validSpotAi(x + 4, y):
+                elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y)and self.validPlacementAi(x + 2, y) and self.validPlacementAi(x + 3, y) and self.validPlacementAi(x + 4, y):
                     for i in range(0,5):
                         self.aiShipBoard[x+i][y] = letter
-                elif direction == 'w' and self.validSpotAi(x, y) and self.validSpotAi(x - 1, y)and self.validSpotAi(x - 2, y) and self.validSpotAi(x - 3, y) and self.validSpotAi(x - 4, y):
+                elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y)and self.validPlacementAi(x - 2, y) and self.validPlacementAi(x - 3, y) and self.validPlacementAi(x - 4, y):
                     for i in range(0,5):
                         self.aiShipBoard[x-i][y] = letter
             elif letter == 'b':
-                if direction == 'n' and self.validSpotAi(x, y) and self.validSpotAi(x, y + 1)and self.validSpotAi(x, y + 2) and self.validSpotAi(x, y + 3):
+                if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1)and self.validPlacementAi(x, y + 2) and self.validPlacementAi(x, y + 3):
                     for i in range(0,4):
                         self.aiShipBoard[x][y+i] = letter
-                elif direction == 's' and self.validSpotAi(x, y) and self.validSpotAi(x, y - 1)and self.validSpotAi(x, y - 2) and self.validSpotAi(x, y - 3):
+                elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1)and self.validPlacementAi(x, y - 2) and self.validPlacementAi(x, y - 3):
                     for i in range(0,4):
                         self.aiShipBoard[x][y-i] = letter
-                elif direction == 'e' and self.validSpotAi(x, y) and self.validSpotAi(x + 1, y)and self.validSpotAi(x + 2, y) and self.validSpotAi(x + 3, y):
+                elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y)and self.validPlacementAi(x + 2, y) and self.validPlacementAi(x + 3, y):
                     for i in range(0,4):
                         self.aiShipBoard[x+i][y] = letter
-                elif direction == 'w' and self.validSpotAi(x, y) and self.validSpotAi(x - 1, y)and self.validSpotAi(x - 2, y) and self.validSpotAi(x - 3, y):
+                elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y)and self.validPlacementAi(x - 2, y) and self.validPlacementAi(x - 3, y):
                     for i in range(0,4):
                         self.aiShipBoard[x-i][y] = letter
             elif letter == 'r':
-                if direction == 'n' and self.validSpotAi(x, y) and self.validSpotAi(x, y + 1)and self.validSpotAi(x, y + 2):
+                if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1)and self.validPlacementAi(x, y + 2):
                     for i in range(0,3):
                         self.aiShipBoard[x][y+i] = letter
-                elif direction == 's' and self.validSpotAi(x, y) and self.validSpotAi(x, y - 1)and self.validSpotAi(x, y - 2):
+                elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1)and self.validPlacementAi(x, y - 2):
                     for i in range(0,3):
                         self.aiShipBoard[x][y-i] = letter
-                elif direction == 'e' and self.validSpotAi(x, y) and self.validSpotAi(x + 1, y)and self.validSpotAi(x + 2, y):
+                elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y)and self.validPlacementAi(x + 2, y):
                     for i in range(0,3):
                         self.aiShipBoard[x+i][y] = letter
-                elif direction == 'w' and self.validSpotAi(x, y) and self.validSpotAi(x - 1, y)and self.validSpotAi(x - 2, y):
+                elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y)and self.validPlacementAi(x - 2, y):
                     for i in range(0,3):
                         self.aiShipBoard[x-i][y] = letter
             elif letter == 's':
-                if direction == 'n' and self.validSpotAi(x, y) and self.validSpotAi(x, y + 1)and self.validSpotAi(x, y + 2):
+                if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1)and self.validPlacementAi(x, y + 2):
                     for i in range(0,3):
                         self.aiShipBoard[x][y+i] = letter
-                elif direction == 's' and self.validSpotAi(x, y) and self.validSpotAi(x, y - 1)and self.validSpotAi(x, y - 2):
+                elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1)and self.validPlacementAi(x, y - 2):
                     for i in range(0,3):
                         self.aiShipBoard[x][y-i] = letter
-                elif direction == 'e' and self.validSpotAi(x, y) and self.validSpotAi(x + 1, y)and self.validSpotAi(x + 2, y):
+                elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y)and self.validPlacementAi(x + 2, y):
                     for i in range(0,3):
                         self.aiShipBoard[x+i][y] = letter
-                elif direction == 'w' and self.validSpotAi(x, y) and self.validSpotAi(x - 1, y)and self.validSpotAi(x - 2, y):
+                elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y)and self.validPlacementAi(x - 2, y):
                     for i in range(0,3):
                         self.aiShipBoard[x-i][y] = letter
             elif letter == 'd':
-                if direction == 'n' and self.validSpotAi(x, y) and self.validSpotAi(x, y + 1):
+                if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1):
                     for i in range(0,3):
                         self.aiShipBoard[x][y+i] = letter
-                elif direction == 's' and self.validSpotAi(x, y) and self.validSpotAi(x, y - 1):
+                elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1):
                     for i in range(0,3):
                         self.aiShipBoard[x][y-i] = letter
-                elif direction == 'e' and self.validSpotAi(x, y) and self.validSpotAi(x + 1, y):
+                elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y):
                     for i in range(0,3):
                         self.aiShipBoard[x+i][y] = letter
-                elif direction == 'w' and self.validSpotAi(x, y) and self.validSpotAi(x - 1, y):
+                elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y):
                     for i in range(0,3):
                         self.aiShipBoard[x-i][y] = letter
         return
@@ -252,14 +270,15 @@ class Game():
 game = Game()
 game.Intro()
 
-# set up player
-game.place("player", 0, 0, 'e', 'c')
-game.place("player", 0, 1, 'e', 'd')
-game.place("player", 0, 2, 'e', 's')
-game.place("player", 0, 3, 'e', 'r')
-game.place("player", 0, 4, 'e', 'b')
-
-#set up AI
+#HARD CODE SET
+# # set up player
+# game.place("player", 0, 0, 'e', 'c')
+# game.place("player", 0, 1, 'e', 'd')
+# game.place("player", 0, 2, 'e', 's')
+# game.place("player", 0, 3, 'e', 'r')
+# game.place("player", 0, 4, 'e', 'b')
+#
+# #set up AI
 game.place("ai", 0, 0, 'e', 'c')
 game.place("ai", 0, 1, 'e', 'd')
 game.place("ai", 0, 2, 'e', 's')
@@ -269,17 +288,141 @@ game.place("ai", 0, 4, 'e', 'b')
 
 
 while(game.playGame):
-    # print("Place your ships\nShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]")
-    # game.draw("player")
-    # print("Enter an x, y coordinate (0-9),a direction, and a ship letter")
-    # while(!game.playerShipsplaced):
-    #     x = int(input("Enter x: "))
-    #     y = int(input("Enter y: "))
-    #     d = input("Enter dir: ")
-    #     L = input("Enter Ship Letter: ")
-    #     game.place("player", x , y, d, L)
-    #     game.draw("player")
+    print("Place your ships\nShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]")
+    game.draw("player")
+    print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
+    while(game.playerShipPlaced < 5):
+        while(True):
+            x = int(input("Enter x: "))
+            if x<0 or x>=game.boardSize:
+                print("try again")
+                x = int(input("Enter x: "))
 
+            y = int(input("Enter y: "))
+            if y < 0 or y >= game.boardSize:
+                print("try again")
+                y = int(input("Enter y: "))
+
+            while(True):
+                d = input("Enter dir: ")
+                if d not in ['n','s','e','w']:
+                    continue
+                else:
+                    break;
+
+            L = 'c'
+
+            game.place("player", x , y, d, L)
+            game.playerShipPlaced += 1
+            game.draw("player")
+            break;
+
+        print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
+        while (True):
+            x = int(input("Enter x: "))
+            if x < 0 or x >= game.boardSize:
+                print("try again")
+                x = int(input("Enter x: "))
+
+            y = int(input("Enter y: "))
+            if y < 0 or y >= game.boardSize:
+                print("try again")
+                y = int(input("Enter y: "))
+
+            while (True):
+                d = input("Enter dir: ")
+                if d not in ['n', 's', 'e', 'w']:
+                    continue
+                else:
+                    break;
+
+            L = 'b'
+
+            game.place("player", x, y, d, L)
+            game.draw("player")
+            game.playerShipPlaced += 1
+            break;
+
+        print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
+        while(True):
+            x = int(input("Enter x: "))
+            if x<0 or x>=game.boardSize:
+                print("try again")
+                x = int(input("Enter x: "))
+
+            y = int(input("Enter y: "))
+            if y < 0 or y >= game.boardSize:
+                print("try again")
+                y = int(input("Enter y: "))
+
+            while(True):
+                d = input("Enter dir: ")
+                if d not in ['n','s','e','w']:
+                    continue
+                else:
+                    break;
+
+            L = 'r'
+
+            game.place("player", x , y, d, L)
+            game.playerShipPlaced += 1
+            game.draw("player")
+            break;
+
+        print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
+        while (True):
+            x = int(input("Enter x: "))
+            if x < 0 or x >= game.boardSize:
+                print("try again")
+                x = int(input("Enter x: "))
+
+            y = int(input("Enter y: "))
+            if y < 0 or y >= game.boardSize:
+                print("try again")
+                y = int(input("Enter y: "))
+
+            while (True):
+                d = input("Enter dir: ")
+                if d not in ['n', 's', 'e', 'w']:
+                    continue
+                else:
+                    break;
+
+            L = 's'
+
+            game.place("player", x, y, d, L)
+            game.playerShipPlaced += 1
+            game.draw("player")
+            break;
+
+        print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
+        while (True):
+            x = int(input("Enter x: "))
+            if x < 0 or x >= game.boardSize:
+                print("try again")
+                x = int(input("Enter x: "))
+
+            y = int(input("Enter y: "))
+            if y < 0 or y >= game.boardSize:
+                print("try again")
+                y = int(input("Enter y: "))
+
+            while (True):
+                d = input("Enter dir: ")
+                if d not in ['n', 's', 'e', 'w']:
+                    continue
+                else:
+                    break;
+
+            L = 'd'
+
+            game.place("player", x, y, d, L)
+            game.playerShipPlaced += 1
+            game.draw("player")
+            break;
+
+
+    #FIRE
     while(True):
         print("Fire at x,y")
         x = int(input("Enter x: "))
