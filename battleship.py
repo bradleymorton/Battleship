@@ -15,9 +15,10 @@ class Game():
         self.aiShipBoard         = [["*" for i in range(self.boardSize)] for j in range(self.boardSize)]
         self.aiTargetBoard       = [["*" for i in range(self.boardSize)] for j in range(self.boardSize)]
 
-        self.playerShipCount = 0
-        self.aiShipCount = 0
-        self.playerHitCount  = 0
+        self.playerFireList = []
+        self.aiFireList = []
+
+        self.playerHitCount= 0
         self.aiHitCount      = 0
         self.playGame = True
         self.winner = ""
@@ -193,17 +194,22 @@ class Game():
                 self.playerHitCount          += 1
                 self.playerTargetBoard[x][y] = 'X'
                 self.aiShipBoard[x][y]       = 'X'
-            elif self.validSpotPlayer(x, y):                                # miss
+                self.playerFireList.append([x,y])
+            elif self.validSpotAi(x, y):                                # miss
                 self.playerTargetBoard[x][y] = '@'
                 self.aiShipBoard[x][y]       = '@'
+                self.playerFireList.append([x, y])
         elif team == "ai":
             if x>=0 and x<self.boardSize and y>=0 and y<self.boardSize and self.playerShipBoard[x][y] in ('c', 'b', 'r', 's', 'd') : # hit
                 self.aiHitCount              += 1
                 self.aiTargetBoard[x][y]     = 'X'
                 self.playerShipBoard[x][y]   = 'X'
+                self.aiFireList.append([x, y])
             elif self.validSpotPlayer(x, y):                                    # miss
-                self.playerTargetBoard[x][y] = '@'
-                self.aiShipBoard[x][y]       = '@'
+                self.playerShipBoard[x][y] = '@'
+                self.aiTargetBoard[x][y]       = '@'
+                self.aiFireList.append([x, y])
+
             return
 
     def checkWin(self):
@@ -274,16 +280,27 @@ while(game.playGame):
     #     game.place("player", x , y, d, L)
     #     game.draw("player")
 
-    print("Fire at x,y")
-    x = int(input("Enter x: "))
-    y = int(input("Enter y: "))
-    game.fire("player",x,y)
-    game.draw("player")
+    while(True):
+        print("Fire at x,y")
+        x = int(input("Enter x: "))
+        if x<0 or x>=game.boardSize:
+            print("try again")
+            x = int(input("Enter x: "))
+        y = int(input("Enter y: "))
+        if y < 0 or y >= game.boardSize:
+            print("try again")
+            y = int(input("Enter y: "))
+        if [x,y] in game.playerFireList:
+            print("you already fired there")
+            continue
 
-    x = random.randint(0,10)
-    y = random.randint(0,10)
-    game.fire("ai",x,y)
-    game.draw("player")
+        game.fire("player",x,y)
+        game.draw("player")
+
+        x = random.randint(0,10)
+        y = random.randint(0,10)
+        game.fire("ai",x,y)
+        game.draw("player")
 
 
 
