@@ -37,10 +37,6 @@ class Game():
         print("                                            |_|      ")
         print("         A Console Based Game of Death!              ")
 
-    def getInput(self):
-
-        return
-
 
     def validSpotPlayer(self, x, y): # checks if on board and water
         valid = False
@@ -76,134 +72,174 @@ class Game():
                 if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1)and self.validPlacementPlayer(x, y + 2) and self.validPlacementPlayer(x, y + 3) and self.validPlacementPlayer(x, y + 4):
                     for i in range(0,5):
                         self.playerShipBoard[x][y+i] = letter
+                    return True
                 elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1)and self.validPlacementPlayer(x, y - 2) and self.validPlacementPlayer(x, y - 3) and self.validPlacementPlayer(x, y - 4):
                     for i in range(0,5):
                         self.playerShipBoard[x][y-i] = letter
+                    return True
                 elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y)and self.validPlacementPlayer(x + 2, y) and self.validPlacementPlayer(x + 3, y) and self.validPlacementPlayer(x + 4, y):
                     for i in range(0,5):
                         self.playerShipBoard[x+i][y] = letter
+                    return True
                 elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y)and self.validPlacementPlayer(x - 2, y) and self.validPlacementPlayer(x - 3, y) and self.validPlacementPlayer(x - 4, y):
                     for i in range(0,5):
                         self.playerShipBoard[x-i][y] = letter
+                    return True
             elif letter == 'b':
                 if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1)and self.validPlacementPlayer(x, y + 2) and self.validPlacementPlayer(x, y + 3):
                     for i in range(0,4):
                         self.playerShipBoard[x][y+i] = letter
+                    return True
                 elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1)and self.validPlacementPlayer(x, y - 2) and self.validPlacementPlayer(x, y - 3):
                     for i in range(0,4):
                         self.playerShipBoard[x][y-i] = letter
+                    return True
                 elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y)and self.validPlacementPlayer(x + 2, y) and self.validPlacementPlayer(x + 3, y):
                     for i in range(0,4):
                         self.playerShipBoard[x+i][y] = letter
+                    return True
                 elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y)and self.validPlacementPlayer(x - 2, y) and self.validPlacementPlayer(x - 3, y):
                     for i in range(0,4):
                         self.playerShipBoard[x-i][y] = letter
+                    return True
             elif letter == 'r':
                 if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1)and self.validPlacementPlayer(x, y + 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y+i] = letter
+                        return True
                 elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1)and self.validPlacementPlayer(x, y - 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y-i] = letter
+                        return True
                 elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y)and self.validPlacementPlayer(x + 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x+i][y] = letter
+                        return True
                 elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y)and self.validPlacementPlayer(x - 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x-i][y] = letter
+                        return True
             elif letter == 's':
                 if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1)and self.validPlacementPlayer(x, y + 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y+i] = letter
+                        return True
                 elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1)and self.validPlacementPlayer(x, y - 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y-i] = letter
+                        return True
                 elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y)and self.validPlacementPlayer(x + 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x+i][y] = letter
+                        return True
                 elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y)and self.validPlacementPlayer(x - 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x-i][y] = letter
+                        return True
             elif letter == 'd':
                 if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1):
                     for i in range(0,2):
                         self.playerShipBoard[x][y+i] = letter
+                        return True
                 elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1):
                     for i in range(0,2):
                         self.playerShipBoard[x][y-i] = letter
+                        return True
                 elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y):
                     for i in range(0,2):
                         self.playerShipBoard[x+i][y] = letter
+                        return True
                 elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y):
                     for i in range(0,2):
                         self.playerShipBoard[x-i][y] = letter
+                    return True
         elif team == "ai":
             if letter == 'c' :
                 if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1)and self.validPlacementAi(x, y + 2) and self.validPlacementAi(x, y + 3) and self.validPlacementAi(x, y + 4):
                     for i in range(0,5):
                         self.aiShipBoard[x][y+i] = letter
+                    return True
                 elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1)and self.validPlacementAi(x, y - 2) and self.validPlacementAi(x, y - 3) and self.validPlacementAi(x, y - 4):
                     for i in range(0,5):
                         self.aiShipBoard[x][y-i] = letter
+                    return True
                 elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y)and self.validPlacementAi(x + 2, y) and self.validPlacementAi(x + 3, y) and self.validPlacementAi(x + 4, y):
                     for i in range(0,5):
                         self.aiShipBoard[x+i][y] = letter
+                    return True
                 elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y)and self.validPlacementAi(x - 2, y) and self.validPlacementAi(x - 3, y) and self.validPlacementAi(x - 4, y):
                     for i in range(0,5):
                         self.aiShipBoard[x-i][y] = letter
+                    return True
             elif letter == 'b':
                 if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1)and self.validPlacementAi(x, y + 2) and self.validPlacementAi(x, y + 3):
                     for i in range(0,4):
                         self.aiShipBoard[x][y+i] = letter
+                    return True
                 elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1)and self.validPlacementAi(x, y - 2) and self.validPlacementAi(x, y - 3):
                     for i in range(0,4):
                         self.aiShipBoard[x][y-i] = letter
+                    return True
                 elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y)and self.validPlacementAi(x + 2, y) and self.validPlacementAi(x + 3, y):
                     for i in range(0,4):
                         self.aiShipBoard[x+i][y] = letter
+                    return True
                 elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y)and self.validPlacementAi(x - 2, y) and self.validPlacementAi(x - 3, y):
                     for i in range(0,4):
                         self.aiShipBoard[x-i][y] = letter
+                    return True
             elif letter == 'r':
                 if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1)and self.validPlacementAi(x, y + 2):
                     for i in range(0,3):
                         self.aiShipBoard[x][y+i] = letter
+                    return True
                 elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1)and self.validPlacementAi(x, y - 2):
                     for i in range(0,3):
                         self.aiShipBoard[x][y-i] = letter
+                    return True
                 elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y)and self.validPlacementAi(x + 2, y):
                     for i in range(0,3):
                         self.aiShipBoard[x+i][y] = letter
+                    return True
                 elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y)and self.validPlacementAi(x - 2, y):
                     for i in range(0,3):
                         self.aiShipBoard[x-i][y] = letter
+                    return True
             elif letter == 's':
                 if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1)and self.validPlacementAi(x, y + 2):
                     for i in range(0,3):
                         self.aiShipBoard[x][y+i] = letter
+                    return True
                 elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1)and self.validPlacementAi(x, y - 2):
                     for i in range(0,3):
                         self.aiShipBoard[x][y-i] = letter
+                    return True
                 elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y)and self.validPlacementAi(x + 2, y):
                     for i in range(0,3):
                         self.aiShipBoard[x+i][y] = letter
+                    return True
                 elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y)and self.validPlacementAi(x - 2, y):
                     for i in range(0,3):
                         self.aiShipBoard[x-i][y] = letter
+                    return True
             elif letter == 'd':
                 if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1):
                     for i in range(0,3):
                         self.aiShipBoard[x][y+i] = letter
+                    return True
                 elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1):
                     for i in range(0,3):
                         self.aiShipBoard[x][y-i] = letter
+                    return True
                 elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y):
                     for i in range(0,3):
                         self.aiShipBoard[x+i][y] = letter
+                    return True
                 elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y):
                     for i in range(0,3):
                         self.aiShipBoard[x-i][y] = letter
-        return
+                    return True
+        return False
 
     def fire(self,team,x,y):
         if team == "player":
@@ -278,11 +314,11 @@ game.Intro()
 # game.place("player", 0, 4, 'e', 'b')
 #
 # #set up AI
-game.place("ai", 0, 0, 'e', 'c')
-game.place("ai", 0, 1, 'e', 'd')
-game.place("ai", 0, 2, 'e', 's')
-game.place("ai", 0, 3, 'e', 'r')
-game.place("ai", 0, 4, 'e', 'b')
+# game.place("ai", 0, 0, 'e', 'c')
+# game.place("ai", 0, 1, 'e', 'd')
+# game.place("ai", 0, 2, 'e', 's')
+# game.place("ai", 0, 3, 'e', 'r')
+# game.place("ai", 0, 4, 'e', 'b')
 
 
 
@@ -294,7 +330,7 @@ while(game.playGame):
 
     print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
 
-
+    # Place player ships
     while(game.playerShipPlaced < 5):
 
         print("place Cruiser")
@@ -317,11 +353,14 @@ while(game.playGame):
                     break
 
             L = 'c'
-
-            game.place("player", x , y, d, L)
-            game.playerShipPlaced += 1
-            game.draw("player")
-            break;
+            if game.place("player",x,y,d,L):
+                game.place("player", x , y, d, L)
+                game.playerShipPlaced += 1
+                game.draw("player")
+                break;
+            else:
+                print("can't place ship here")
+                continue
 
         print("Place Battleship")
         while (True):
@@ -344,10 +383,14 @@ while(game.playGame):
 
             L = 'b'
 
-            game.place("player", x, y, d, L)
-            game.draw("player")
-            game.playerShipPlaced += 1
-            break;
+            if game.place("player",x,y,d,L):
+                game.place("player", x, y, d, L)
+                game.draw("player")
+                game.playerShipPlaced += 1
+                break
+            else:
+                print("can't place ship here")
+                continue
 
         print("Place Carrier")
         while(True):
@@ -370,12 +413,16 @@ while(game.playGame):
 
             L = 'r'
 
-            game.place("player", x , y, d, L)
-            game.playerShipPlaced += 1
-            game.draw("player")
-            break;
+            if game.validPlacementPlayer(x, y):
+                game.place("player", x , y, d, L)
+                game.playerShipPlaced += 1
+                game.draw("player")
+                break
+            else:
+                print("cant place ship here")
+                continue
 
-        print("PLace Sub")
+        print("Place Sub")
         while (True):
             x = int(input("Enter x: "))
             if x < 0 or x >= game.boardSize:
@@ -396,10 +443,14 @@ while(game.playGame):
 
             L = 's'
 
-            game.place("player", x, y, d, L)
-            game.playerShipPlaced += 1
-            game.draw("player")
-            break;
+            if game.validPlacementPlayer(x, y):
+                game.place("player", x, y, d, L)
+                game.playerShipPlaced += 1
+                game.draw("player")
+                break
+            else:
+                print("cant place ship here")
+                continue
 
         print("Place Destroyer")
         while (True):
@@ -422,14 +473,91 @@ while(game.playGame):
 
             L = 'd'
 
-            game.place("player", x, y, d, L)
-            game.playerShipPlaced += 1
-            game.draw("player")
-            break;
+            if game.validPlacementPlayer(x,y):
+                game.place("player", x, y, d, L)
+                game.playerShipPlaced += 1
+                game.draw("player")
+                break
+            else:
+                print("cant place ship here")
+                continue
 
+        # Place ai ships
+        direction=['n', 's', 'e', 'w']
+        while (game.playerShipPlaced < 5):
+
+            while (True):
+                x = random.randint(0,10)
+                y = random.randint(0,10)
+                direction = random.randint(0,5)
+                d=directions[direction]
+                L = 'c'
+                if game.place("ai", x, y, d, L):
+                    game.place("ai", x, y, d, L)
+                    game.aiShipPlaced += 1
+                    break
+                else:
+                    continue
+
+            while (True):
+                x = random.randint(0,10)
+                y = random.randint(0,10)
+                direction = random.randint(0,5)
+                d=directions[direction]
+                L = 'b'
+                if game.place("ai", x, y, d, L):
+                    game.place("ai", x, y, d, L)
+                    game.aiShipPlaced += 1
+                    break
+                else:
+                    continue
+
+            while (True):
+                x = random.randint(0,10)
+                y = random.randint(0,10)
+                direction = random.randint(0,5)
+                d=directions[direction]
+                L = 'r'
+                if game.place("ai", x, y, d, L):
+                    game.place("ai", x, y, d, L)
+                    game.aiShipPlaced += 1
+                    break
+                else:
+                    continue
+
+            while (True):
+                x = random.randint(0,10)
+                y = random.randint(0,10)
+                direction = random.randint(0,5)
+                d=directions[direction]
+                L = 's'
+                if game.place("ai", x, y, d, L):
+                    game.place("ai", x, y, d, L)
+                    game.aiShipPlaced += 1
+                    break
+                else:
+                    continue
+
+            while (True):
+                x = random.randint(0,10)
+                y = random.randint(0,10)
+                direction = random.randint(0,5)
+                d=directions[direction]
+                L = 'd'
+                if game.place("ai", x, y, d, L):
+                    game.place("ai", x, y, d, L)
+                    game.aiShipPlaced += 1
+                    break
+                else:
+                    continue
+
+
+    game.draw("ai")
 
     #FIRE
     while(True):
+
+        # player fire
         print("Fire at x,y")
         x = int(input("Enter x: "))
         if x<0 or x>=game.boardSize:
@@ -449,6 +577,7 @@ while(game.playGame):
         if game.playGame == False:
             break
 
+        # ai fire
         x = random.randint(0,10)
         y = random.randint(0,10)
         game.fire("ai",x,y)
