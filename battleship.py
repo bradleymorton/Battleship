@@ -7,6 +7,12 @@
 
 import random
 
+#todo
+# 1. better ai fire
+# 2. option to randomly place player ships
+# 3. refactot
+
+
 class Game():
     def __init__(self):
         self.boardSize = 10
@@ -326,9 +332,6 @@ game.Intro()
 while(game.playGame):
     print("Place your ships\nShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]")
     game.draw("player")
-
-    # to do check direction and replace
-
     print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
 
     # Place player ships
