@@ -10,7 +10,7 @@ import random
 #todo
 # 1. better ai fire
 # 2. option to randomly place player ships
-# 3. refactot
+# 3. refactor
 
 
 class Game():
@@ -39,6 +39,7 @@ class Game():
         self.aiShipList = [0,0,0,0,0]
         self.displayOnce = [False] * 10
 
+        self.randomPlace = False
 
 
 
@@ -396,163 +397,240 @@ game.Intro()
 
 
 while(game.playGame):
-    print("Place your ships\nShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]")
-    game.draw("player")
-    print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
 
-    # Place player ships
-    while(game.playerShipPlaced < 5):
+    choose = int(input("0 random place ships\n1 place ships manually\n>>>"))
+    if choose==0:
+        game.randomPlace=True
+    elif choose==1:
+        game.randomPlace=False
 
-        print("place Carrier")
-        while(True):
-            x = int(input("Enter x: "))
-            if x<0 or x>=game.boardSize:
-                print("try again")
-                x = int(input("Enter x: "))
+    if(game.randomPlace==False):
+        print("Place your ships\nShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]")
+        game.draw("player")
+        print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
 
-            y = int(input("Enter y: "))
-            if y < 0 or y >= game.boardSize:
-                print("try again")
-                y = int(input("Enter y: "))
+        # Place player ships
+        while(game.playerShipPlaced < 5):
 
+            print("place Carrier")
             while(True):
-                d = input("Enter dir: ")
-                if d not in ['n','s','e','w']:
-                    continue
-                else:
-                    break
-
-            L = 'c'
-            if game.place("player",x,y,d,L):
-                game.place("player", x , y, d, L)
-                game.draw("player")
-                game.playerShipPlaced += 1
-                break
-            else:
-                print("can't place ship here")
-                continue
-
-        print("Place Battleship")
-        while (True):
-            x = int(input("Enter x: "))
-            if x < 0 or x >= game.boardSize:
-                print("try again")
                 x = int(input("Enter x: "))
+                if x<0 or x>=game.boardSize:
+                    print("try again")
+                    x = int(input("Enter x: "))
 
-            y = int(input("Enter y: "))
-            if y < 0 or y >= game.boardSize:
-                print("try again")
                 y = int(input("Enter y: "))
+                if y < 0 or y >= game.boardSize:
+                    print("try again")
+                    y = int(input("Enter y: "))
 
+                while(True):
+                    d = input("Enter dir: ")
+                    if d not in ['n','s','e','w']:
+                        continue
+                    else:
+                        break
+
+                L = 'c'
+                if game.place("player",x,y,d,L):
+                    game.place("player", x , y, d, L)
+                    game.draw("player")
+                    game.playerShipPlaced += 1
+                    break
+                else:
+                    print("can't place ship here")
+                    continue
+
+            print("Place Battleship")
             while (True):
-                d = input("Enter dir: ")
-                if d not in ['n', 's', 'e', 'w']:
-                    continue
-                else:
-                    break
-
-            L = 'b'
-
-            if game.place("player",x,y,d,L):
-                game.place("player", x, y, d, L)
-                game.draw("player")
-                game.playerShipPlaced += 1
-                break
-            else:
-                print("can't place ship here")
-                continue
-
-        print("Place Cruiser")
-        while(True):
-            x = int(input("Enter x: "))
-            if x<0 or x>=game.boardSize:
-                print("try again")
                 x = int(input("Enter x: "))
+                if x < 0 or x >= game.boardSize:
+                    print("try again")
+                    x = int(input("Enter x: "))
 
-            y = int(input("Enter y: "))
-            if y < 0 or y >= game.boardSize:
-                print("try again")
                 y = int(input("Enter y: "))
+                if y < 0 or y >= game.boardSize:
+                    print("try again")
+                    y = int(input("Enter y: "))
 
+                while (True):
+                    d = input("Enter dir: ")
+                    if d not in ['n', 's', 'e', 'w']:
+                        continue
+                    else:
+                        break
+
+                L = 'b'
+
+                if game.place("player",x,y,d,L):
+                    game.place("player", x, y, d, L)
+                    game.draw("player")
+                    game.playerShipPlaced += 1
+                    break
+                else:
+                    print("can't place ship here")
+                    continue
+
+            print("Place Cruiser")
             while(True):
-                d = input("Enter dir: ")
-                if d not in ['n','s','e','w']:
-                    continue
-                else:
-                    break
-
-            L = 'r'
-
-            if game.place("player",x, y,d,L):
-                game.place("player", x , y, d, L)
-                game.draw("player")
-                game.playerShipPlaced += 1
-                break
-            else:
-                print("cant place ship here")
-                continue
-
-        print("Place Sub")
-        while (True):
-            x = int(input("Enter x: "))
-            if x < 0 or x >= game.boardSize:
-                print("try again")
                 x = int(input("Enter x: "))
+                if x<0 or x>=game.boardSize:
+                    print("try again")
+                    x = int(input("Enter x: "))
 
-            y = int(input("Enter y: "))
-            if y < 0 or y >= game.boardSize:
-                print("try again")
                 y = int(input("Enter y: "))
+                if y < 0 or y >= game.boardSize:
+                    print("try again")
+                    y = int(input("Enter y: "))
+
+                while(True):
+                    d = input("Enter dir: ")
+                    if d not in ['n','s','e','w']:
+                        continue
+                    else:
+                        break
+
+                L = 'r'
+
+                if game.place("player",x, y,d,L):
+                    game.place("player", x , y, d, L)
+                    game.draw("player")
+                    game.playerShipPlaced += 1
+                    break
+                else:
+                    print("cant place ship here")
+                    continue
+
+            print("Place Sub")
+            while (True):
+                x = int(input("Enter x: "))
+                if x < 0 or x >= game.boardSize:
+                    print("try again")
+                    x = int(input("Enter x: "))
+
+                y = int(input("Enter y: "))
+                if y < 0 or y >= game.boardSize:
+                    print("try again")
+                    y = int(input("Enter y: "))
+
+                while (True):
+                    d = input("Enter dir: ")
+                    if d not in ['n', 's', 'e', 'w']:
+                        continue
+                    else:
+                        break
+
+                L = 's'
+
+                if game.place("player", x, y,d,L):
+                    game.place("player", x, y, d, L)
+                    game.draw("player")
+                    game.playerShipPlaced += 1
+                    break
+                else:
+                    print("cant place ship here")
+                    continue
+
+            print("Place Destroyer")
+            while (True):
+                x = int(input("Enter x: "))
+                if x < 0 or x >= game.boardSize:
+                    print("try again")
+                    x = int(input("Enter x: "))
+
+                y = int(input("Enter y: "))
+                if y < 0 or y >= game.boardSize:
+                    print("try again")
+                    y = int(input("Enter y: "))
+
+                while (True):
+                    d = input("Enter dir: ")
+                    if d not in ['n', 's', 'e', 'w']:
+                        continue
+                    else:
+                        break
+
+                L = 'd'
+
+                if game.place("player",x,y,d,L):
+                    game.place("player", x, y, d, L)
+                    game.draw("player")
+                    game.playerShipPlaced += 1
+                    break
+                else:
+                    print("cant place ship here")
+                    continue
+    elif game.randomPlace:
+        # Place player ships randomly
+        while (game.playerShipPlaced < 5 and game.randomPlace):
 
             while (True):
-                d = input("Enter dir: ")
-                if d not in ['n', 's', 'e', 'w']:
-                    continue
-                else:
+                x = random.randint(0, 9)
+                y = random.randint(0, 9)
+                direction = random.randint(0, 3)
+                d = game.directions[direction]
+                L = 'c'
+                if game.place("player", x, y, d, L):
+                    game.place("player", x, y, d, L)
+                    game.playerShipPlaced += 1
                     break
-
-            L = 's'
-
-            if game.place("player", x, y,d,L):
-                game.place("player", x, y, d, L)
-                game.draw("player")
-                game.playerShipPlaced += 1
-                break
-            else:
-                print("cant place ship here")
-                continue
-
-        print("Place Destroyer")
-        while (True):
-            x = int(input("Enter x: "))
-            if x < 0 or x >= game.boardSize:
-                print("try again")
-                x = int(input("Enter x: "))
-
-            y = int(input("Enter y: "))
-            if y < 0 or y >= game.boardSize:
-                print("try again")
-                y = int(input("Enter y: "))
+                else:
+                    continue
 
             while (True):
-                d = input("Enter dir: ")
-                if d not in ['n', 's', 'e', 'w']:
-                    continue
-                else:
+                   x = random.randint(0, 9)
+                   y = random.randint(0, 9)
+                   direction = random.randint(0, 3)
+                   d = game.directions[direction]
+                   L = 'b'
+                   if game.place("player", x, y, d, L):
+                       game.place("player", x, y, d, L)
+                       game.playerShipPlaced += 1
+                       break
+                   else:
+                       continue
+
+            while (True):
+                x = random.randint(0, 9)
+                y = random.randint(0, 9)
+                direction = random.randint(0, 3)
+                d = game.directions[direction]
+                L = 'r'
+                if game.place("player", x, y, d, L):
+                    game.place("player", x, y, d, L)
+                    game.playerShipPlaced += 1
                     break
+                else:
+                    continue
 
-            L = 'd'
+            while (True):
+                x = random.randint(0, 9)
+                y = random.randint(0, 9)
+                direction = random.randint(0, 3)
+                d = game.directions[direction]
+                L = 's'
+                if game.place("player", x, y, d, L):
+                    game.place("player", x, y, d, L)
+                    game.playerShipPlaced += 1
+                    break
+                else:
+                    continue
 
-            if game.place("player",x,y,d,L):
-                game.place("player", x, y, d, L)
-                game.draw("player")
-                game.playerShipPlaced += 1
-                break
-            else:
-                print("cant place ship here")
-                continue
+            while (True):
+                x = random.randint(0, 9)
+                y = random.randint(0, 9)
+                direction = random.randint(0, 3)
+                d = game.directions[direction]
+                L = 'd'
+                if game.place("player", x, y, d, L):
+                    game.place("player", x, y, d, L)
+                    game.playerShipPlaced += 1
+                    break
+                else:
+                    continue
+            game.draw("player")
 
-        # Place ai ships
+        # Place ai ships randomly
         while (game.aiShipPlaced < 5):
 
             while (True):
