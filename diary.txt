@@ -12,6 +12,6 @@ George mostly playable game -Friday Feb 22 35min
 
 Bradley and George: pair programming squashing bugs and cursing at python3- Monday Feb 25 16:30 to 19:30 and 20:00 to 23:00
 
+George: fully playable draft Mon Feb 25 23:30 to 00:30
 
-
-running total time: 12h
+running total time: 13h
