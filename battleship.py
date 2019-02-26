@@ -35,6 +35,14 @@ class Game():
         self.directions=['n', 's', 'e', 'w']
         # Ships = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']] #note
 
+        self.playerShipList=[0,0,0,0,0]
+        self.aiShipList = [0,0,0,0,0]
+        self.displayOnce = [False] * 10
+
+
+
+
+
     def Intro(self):
         print("  ____        _   _   _        ____  _     _         ")
         print(" | __ )  __ _| |_| |_| | ___  / ___|| |__ (_)_ __    ")
@@ -251,6 +259,7 @@ class Game():
         if team == "player":
             if x>=0 and x<self.boardSize and y>=0 and y<self.boardSize and self.aiShipBoard[x][y] in ('c', 'b', 'r', 's', 'd') : # hit
                 self.aiHitCount          += 1
+                self.markShipList("player",self.aiShipBoard[x][y])
                 self.playerTargetBoard[x][y] = 'X'
                 self.aiShipBoard[x][y]       = 'X'
                 self.playerFireList.append([x,y])
@@ -261,6 +270,7 @@ class Game():
         elif team == "ai":
             if x>=0 and x<self.boardSize and y>=0 and y<self.boardSize and self.playerShipBoard[x][y] in ('c', 'b', 'r', 's', 'd') : # hit
                 self.playerHitCount              += 1
+                self.markShipList("ai", self.playerShipBoard[x][y])
                 self.aiTargetBoard[x][y]     = 'X'
                 self.playerShipBoard[x][y]   = 'X'
                 self.aiFireList.append([x,y])
@@ -270,6 +280,62 @@ class Game():
                 self.aiFireList.append([x, y])
         return
 
+    def markShipList(self,team,char,):
+        if team == "player":
+            if char == 'c':
+                self.aiShipList[0] += 1
+            elif char == 'b':
+                self.aiShipList[1] += 1
+            elif char == 'r':
+                self.aiShipList[2] += 1
+            elif char == 's':
+                self.aiShipList[3] += 1
+            elif char == 'd':
+                self.aiShipList[4] += 1
+        elif team == "ai":
+            if char == 'c':
+                self.playerShipList[0] += 1
+            elif char == 'b':
+                self.playerShipList[1] += 1
+            elif char == 'r':
+                self.playerShipList[2] += 1
+            elif char == 's':
+                self.playerShipList[3] += 1
+            elif char == 'd':
+                self.playerShipList[4] += 1
+
+    def checkSunkShip(self):
+        if self.aiShipList[0] == 5 and self.displayOnce[0]==False:
+            print("player sunk ai's carrier")
+            self.displayOnce[0]=True
+        elif self.aiShipList[1] == 4 and self.displayOnce[1]==False:
+            print("player sunk ai's battleship")
+            self.displayOnce[1] = True
+        elif self.aiShipList[2] == 3 and self.displayOnce[2]==False:
+            print("player sunk ai's cruiser")
+            self.displayOnce[2] = True
+        elif self.aiShipList[3] == 3 and self.displayOnce[3]==False:
+            print("player sunk ai's sub")
+            self.displayOnce[3] = True
+        elif self.aiShipList[4] == 2 and self.displayOnce[4]==False:
+            print("player sunk ai's destroyer")
+            self.displayOnce[4] = True
+
+        elif self.playerShipList[0] == 5 and self.displayOnce[5]==False:
+            print("ai sunk player's carrier")
+            self.displayOnce[5] = True
+        elif self.playerShipList[1] == 4 and self.displayOnce[6]==False:
+            print("ai sunk player's battleship")
+            self.displayOnce[6] = True
+        elif self.playerShipList[2] == 3 and self.displayOnce[7]==False:
+            print("ai sunk player's cruiser")
+            self.displayOnce[7] = True
+        elif self.playerShipList[3] == 3 and self.displayOnce[8]==False:
+            print("ai sunk player's sub")
+            self.displayOnce[8] = True
+        elif self.playerShipList[4] == 2 and self.displayOnce[9]==False:
+            print("ai sunk player's destroyer")
+            self.displayOnce[9] = True
 
     def checkWin(self):
         if self.playerHitCount == 17:
@@ -337,7 +403,7 @@ while(game.playGame):
     # Place player ships
     while(game.playerShipPlaced < 5):
 
-        print("place Cruiser")
+        print("place Carrier")
         while(True):
             x = int(input("Enter x: "))
             if x<0 or x>=game.boardSize:
@@ -396,7 +462,7 @@ while(game.playGame):
                 print("can't place ship here")
                 continue
 
-        print("Place Carrier")
+        print("Place Cruiser")
         while(True):
             x = int(input("Enter x: "))
             if x<0 or x>=game.boardSize:
@@ -576,6 +642,7 @@ while(game.playGame):
             game.draw("player")
             break
 
+        game.checkSunkShip()
         game.checkWin()
         if game.playGame == False:
             break
@@ -590,6 +657,7 @@ while(game.playGame):
             game.draw("player")
             break
 
+        game.checkSunkShip()
         game.checkWin()
         if game.playGame == False:
             break
