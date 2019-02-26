@@ -26,6 +26,7 @@ class Game():
         self.playGame = True
         self.winner = ""
 
+        self.directions=['n', 's', 'e', 'w']
         # Ships = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']] #note
 
     def Intro(self):
@@ -40,10 +41,9 @@ class Game():
 
     def validSpotPlayer(self, x, y): # checks if on board and water
         valid = False
-        if x>=0 and x<self.boardSize and y<self.boardSize and self.playerShipBoard[x][y] not in ['c','b','r','s','d']:
+        if x>=0 and x<self.boardSize and y>=0 and y<self.boardSize and self.playerShipBoard[x][y] not in ['c','b','r','s','d']:
             valid = True
-        else:
-            return valid
+        return valid
 
     def validSpotAi(self, x, y): # checks if on board and water
         valid = False
@@ -106,49 +106,49 @@ class Game():
                 if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1)and self.validPlacementPlayer(x, y + 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y+i] = letter
-                        return True
+                    return True
                 elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1)and self.validPlacementPlayer(x, y - 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y-i] = letter
-                        return True
+                    return True
                 elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y)and self.validPlacementPlayer(x + 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x+i][y] = letter
-                        return True
+                    return True
                 elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y)and self.validPlacementPlayer(x - 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x-i][y] = letter
-                        return True
+                    return True
             elif letter == 's':
                 if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1)and self.validPlacementPlayer(x, y + 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y+i] = letter
-                        return True
+                    return True
                 elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1)and self.validPlacementPlayer(x, y - 2):
                     for i in range(0,3):
                         self.playerShipBoard[x][y-i] = letter
-                        return True
+                    return True
                 elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y)and self.validPlacementPlayer(x + 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x+i][y] = letter
-                        return True
+                    return True
                 elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y)and self.validPlacementPlayer(x - 2, y):
                     for i in range(0,3):
                         self.playerShipBoard[x-i][y] = letter
-                        return True
+                    return True
             elif letter == 'd':
                 if direction == 's' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y + 1):
                     for i in range(0,2):
                         self.playerShipBoard[x][y+i] = letter
-                        return True
+                    return True
                 elif direction == 'n' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x, y - 1):
                     for i in range(0,2):
                         self.playerShipBoard[x][y-i] = letter
-                        return True
+                    return True
                 elif direction == 'e' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x + 1, y):
                     for i in range(0,2):
                         self.playerShipBoard[x+i][y] = letter
-                        return True
+                    return True
                 elif direction == 'w' and self.validPlacementPlayer(x, y) and self.validPlacementPlayer(x - 1, y):
                     for i in range(0,2):
                         self.playerShipBoard[x-i][y] = letter
@@ -224,19 +224,19 @@ class Game():
                     return True
             elif letter == 'd':
                 if direction == 's' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y + 1):
-                    for i in range(0,3):
+                    for i in range(0,2):
                         self.aiShipBoard[x][y+i] = letter
                     return True
                 elif direction == 'n' and self.validPlacementAi(x, y) and self.validPlacementAi(x, y - 1):
-                    for i in range(0,3):
+                    for i in range(0,2):
                         self.aiShipBoard[x][y-i] = letter
                     return True
                 elif direction == 'e' and self.validPlacementAi(x, y) and self.validPlacementAi(x + 1, y):
-                    for i in range(0,3):
+                    for i in range(0,2):
                         self.aiShipBoard[x+i][y] = letter
                     return True
                 elif direction == 'w' and self.validPlacementAi(x, y) and self.validPlacementAi(x - 1, y):
-                    for i in range(0,3):
+                    for i in range(0,2):
                         self.aiShipBoard[x-i][y] = letter
                     return True
         return False
@@ -251,19 +251,19 @@ class Game():
             elif self.validSpotAi(x, y):                                # miss
                 self.playerTargetBoard[x][y] = '@'
                 self.aiShipBoard[x][y]       = '@'
-                self.playerFireList.append([x, y])
+                self.playerFireList.append([x,y])
         elif team == "ai":
             if x>=0 and x<self.boardSize and y>=0 and y<self.boardSize and self.playerShipBoard[x][y] in ('c', 'b', 'r', 's', 'd') : # hit
                 self.playerHitCount              += 1
                 self.aiTargetBoard[x][y]     = 'X'
                 self.playerShipBoard[x][y]   = 'X'
-                self.aiFireList.append([x, y])
+                self.aiFireList.append([x,y])
             elif self.validSpotPlayer(x, y):                                    # miss
+                self.aiTargetBoard[x][y]   = '@'
                 self.playerShipBoard[x][y] = '@'
-                self.aiTargetBoard[x][y]       = '@'
                 self.aiFireList.append([x, y])
+        return
 
-            return
 
     def checkWin(self):
         if self.playerHitCount == 17:
@@ -306,7 +306,8 @@ game = Game()
 game.Intro()
 
 #HARD CODE SET
-# set up player
+
+# # set up player
 # game.place("player", 0, 0, 'e', 'c')
 # game.place("player", 0, 1, 'e', 'd')
 # game.place("player", 0, 2, 'e', 's')
@@ -326,7 +327,7 @@ while(game.playGame):
     print("Place your ships\nShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]")
     game.draw("player")
 
-    # check direction and replace
+    # to do check direction and replace
 
     print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
 
@@ -355,9 +356,9 @@ while(game.playGame):
             L = 'c'
             if game.place("player",x,y,d,L):
                 game.place("player", x , y, d, L)
-                game.playerShipPlaced += 1
                 game.draw("player")
-                break;
+                game.playerShipPlaced += 1
+                break
             else:
                 print("can't place ship here")
                 continue
@@ -379,7 +380,7 @@ while(game.playGame):
                 if d not in ['n', 's', 'e', 'w']:
                     continue
                 else:
-                    break;
+                    break
 
             L = 'b'
 
@@ -409,14 +410,14 @@ while(game.playGame):
                 if d not in ['n','s','e','w']:
                     continue
                 else:
-                    break;
+                    break
 
             L = 'r'
 
-            if game.validPlacementPlayer(x, y):
+            if game.place("player",x, y,d,L):
                 game.place("player", x , y, d, L)
-                game.playerShipPlaced += 1
                 game.draw("player")
+                game.playerShipPlaced += 1
                 break
             else:
                 print("cant place ship here")
@@ -439,14 +440,14 @@ while(game.playGame):
                 if d not in ['n', 's', 'e', 'w']:
                     continue
                 else:
-                    break;
+                    break
 
             L = 's'
 
-            if game.validPlacementPlayer(x, y):
+            if game.place("player", x, y,d,L):
                 game.place("player", x, y, d, L)
-                game.playerShipPlaced += 1
                 game.draw("player")
+                game.playerShipPlaced += 1
                 break
             else:
                 print("cant place ship here")
@@ -469,28 +470,27 @@ while(game.playGame):
                 if d not in ['n', 's', 'e', 'w']:
                     continue
                 else:
-                    break;
+                    break
 
             L = 'd'
 
-            if game.validPlacementPlayer(x,y):
+            if game.place("player",x,y,d,L):
                 game.place("player", x, y, d, L)
-                game.playerShipPlaced += 1
                 game.draw("player")
+                game.playerShipPlaced += 1
                 break
             else:
                 print("cant place ship here")
                 continue
 
         # Place ai ships
-        direction=['n', 's', 'e', 'w']
-        while (game.playerShipPlaced < 5):
+        while (game.aiShipPlaced < 5):
 
             while (True):
-                x = random.randint(0,10)
-                y = random.randint(0,10)
-                direction = random.randint(0,5)
-                d=directions[direction]
+                x = random.randint(0,9)
+                y = random.randint(0,9)
+                direction = random.randint(0,3)
+                d=game.directions[direction]
                 L = 'c'
                 if game.place("ai", x, y, d, L):
                     game.place("ai", x, y, d, L)
@@ -500,10 +500,10 @@ while(game.playGame):
                     continue
 
             while (True):
-                x = random.randint(0,10)
-                y = random.randint(0,10)
-                direction = random.randint(0,5)
-                d=directions[direction]
+                x = random.randint(0,9)
+                y = random.randint(0,9)
+                direction = random.randint(0,3)
+                d=game.directions[direction]
                 L = 'b'
                 if game.place("ai", x, y, d, L):
                     game.place("ai", x, y, d, L)
@@ -513,10 +513,10 @@ while(game.playGame):
                     continue
 
             while (True):
-                x = random.randint(0,10)
-                y = random.randint(0,10)
-                direction = random.randint(0,5)
-                d=directions[direction]
+                x = random.randint(0,9)
+                y = random.randint(0,9)
+                direction = random.randint(0,3)
+                d=game.directions[direction]
                 L = 'r'
                 if game.place("ai", x, y, d, L):
                     game.place("ai", x, y, d, L)
@@ -526,10 +526,10 @@ while(game.playGame):
                     continue
 
             while (True):
-                x = random.randint(0,10)
-                y = random.randint(0,10)
-                direction = random.randint(0,5)
-                d=directions[direction]
+                x = random.randint(0,9)
+                y = random.randint(0,9)
+                direction = random.randint(0,3)
+                d=game.directions[direction]
                 L = 's'
                 if game.place("ai", x, y, d, L):
                     game.place("ai", x, y, d, L)
@@ -539,10 +539,10 @@ while(game.playGame):
                     continue
 
             while (True):
-                x = random.randint(0,10)
-                y = random.randint(0,10)
-                direction = random.randint(0,5)
-                d=directions[direction]
+                x = random.randint(0,9)
+                y = random.randint(0,9)
+                direction = random.randint(0,3)
+                d=game.directions[direction]
                 L = 'd'
                 if game.place("ai", x, y, d, L):
                     game.place("ai", x, y, d, L)
@@ -551,37 +551,45 @@ while(game.playGame):
                 else:
                     continue
 
-
-    game.draw("ai")
-
     #FIRE
     while(True):
 
         # player fire
-        print("Fire at x,y")
-        x = int(input("Enter x: "))
-        if x<0 or x>=game.boardSize:
-            print("try again")
+        while (True):
+            print("Fire at x,y")
             x = int(input("Enter x: "))
-        y = int(input("Enter y: "))
-        if y < 0 or y >= game.boardSize:
-            print("try again")
+            if x<0 or x>=game.boardSize:
+                print("try again")
+                x = int(input("Enter x: "))
             y = int(input("Enter y: "))
-        if [x,y] in game.playerFireList:
-            print("you already fired there")
-            continue
+            if y < 0 or y >= game.boardSize:
+                print("try again")
+                y = int(input("Enter y: "))
+            if [x,y] in game.playerFireList:
+                print("you already fired there")
+                continue
 
-        game.fire("player",x,y)
-        game.draw("player")
+            game.fire("player",x,y)
+            game.draw("player")
+            break
+
         game.checkWin()
         if game.playGame == False:
             break
 
         # ai fire
-        x = random.randint(0,10)
-        y = random.randint(0,10)
-        game.fire("ai",x,y)
-        game.draw("player")
+        while(True):
+            x = random.randint(0,9)
+            y = random.randint(0,9)
+            if [x,y] in game.aiFireList:
+                continue
+            game.fire("ai",x,y)
+            game.draw("player")
+            break
+
+        game.checkWin()
+        if game.playGame == False:
+            break
 
 print()
 print(game.winner)
