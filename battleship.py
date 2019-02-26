@@ -81,8 +81,8 @@ class Game():
                     for i in range(0,3):
                     	self.playerShipBoard[x-i][y] = letter
             elif letter == 'd':
-                if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1):
-                	print("placing destroyer, direction north")
+				if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1):
+					print("placing destroyer, direction north")
                     for i in range(0,2):
                     	self.playerShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1):
