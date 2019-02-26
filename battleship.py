@@ -7,7 +7,7 @@
 class Game():
     def __init__(self):
         self.boardSize = 10
-        self.board = [['*']*self.boardSize, ['*']*self.boardSize]
+        self.board = [["*" for i in range(self.boardSize)] for j in range(self.boardSize)]
         self.playerShipBoard     = self.board
         self.playerTargetBoard   = self.board
         self.aiShipBoard         = self.board
@@ -195,13 +195,13 @@ class Game():
             print("This is the target board")
             for x in range(self.boardSize):
                 for y in range(self.boardSize):
-                    print(self.playerTargetBoard[x][y])
-                print("\n")
+                    print(self.playerTargetBoard[x][y], end = '')
+                print("")
             print("This is your board")
             for x in range(self.boardSize):
                 for y in range(self.boardSize):
-                    print(self.playerShipBoard[x][y])
-                print("\n")
+                    print(self.playerShipBoard[x][y], end = '')
+                print("")
         elif team == "ai":
             print("This is the target board")
             for x in range(self.boardSize):
@@ -217,7 +217,9 @@ class Game():
 
 
 
-
+game = Game()
+game.place("player", 5, 5, "n", "c")
+game.draw("player")
 
 
 
