@@ -47,8 +47,7 @@ class Game():
         if x>=0 and x<self.boardSize and y<self.boardSize and self.playerShipBoard[x][y] not in ['c','b','r','s','d']:
             valid = True
         else:
-            print("INVALID MOVE")
-        return valid
+            return valid
 
     def validSpotAi(self, x, y): # checks if on board and water
         valid = False
@@ -209,7 +208,7 @@ class Game():
     def fire(self,team,x,y):
         if team == "player":
             if x>=0 and x<self.boardSize and y>=0 and y<self.boardSize and self.aiShipBoard[x][y] in ('c', 'b', 'r', 's', 'd') : # hit
-                self.playerHitCount          += 1
+                self.aiHitCount          += 1
                 self.playerTargetBoard[x][y] = 'X'
                 self.aiShipBoard[x][y]       = 'X'
                 self.playerFireList.append([x,y])
@@ -219,7 +218,7 @@ class Game():
                 self.playerFireList.append([x, y])
         elif team == "ai":
             if x>=0 and x<self.boardSize and y>=0 and y<self.boardSize and self.playerShipBoard[x][y] in ('c', 'b', 'r', 's', 'd') : # hit
-                self.aiHitCount              += 1
+                self.playerHitCount              += 1
                 self.aiTargetBoard[x][y]     = 'X'
                 self.playerShipBoard[x][y]   = 'X'
                 self.aiFireList.append([x, y])
@@ -271,7 +270,7 @@ game = Game()
 game.Intro()
 
 #HARD CODE SET
-# # set up player
+# set up player
 # game.place("player", 0, 0, 'e', 'c')
 # game.place("player", 0, 1, 'e', 'd')
 # game.place("player", 0, 2, 'e', 's')
@@ -290,8 +289,15 @@ game.place("ai", 0, 4, 'e', 'b')
 while(game.playGame):
     print("Place your ships\nShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]")
     game.draw("player")
+
+    # check direction and replace
+
     print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
+
+
     while(game.playerShipPlaced < 5):
+
+        print("place Cruiser")
         while(True):
             x = int(input("Enter x: "))
             if x<0 or x>=game.boardSize:
@@ -308,7 +314,7 @@ while(game.playGame):
                 if d not in ['n','s','e','w']:
                     continue
                 else:
-                    break;
+                    break
 
             L = 'c'
 
@@ -317,7 +323,7 @@ while(game.playGame):
             game.draw("player")
             break;
 
-        print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
+        print("Place Battleship")
         while (True):
             x = int(input("Enter x: "))
             if x < 0 or x >= game.boardSize:
@@ -343,7 +349,7 @@ while(game.playGame):
             game.playerShipPlaced += 1
             break;
 
-        print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
+        print("Place Carrier")
         while(True):
             x = int(input("Enter x: "))
             if x<0 or x>=game.boardSize:
@@ -369,7 +375,7 @@ while(game.playGame):
             game.draw("player")
             break;
 
-        print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
+        print("PLace Sub")
         while (True):
             x = int(input("Enter x: "))
             if x < 0 or x >= game.boardSize:
@@ -395,7 +401,7 @@ while(game.playGame):
             game.draw("player")
             break;
 
-        print("Enter an x, y coordinate (0-9),and direction (n,s,e,w)")
+        print("Place Destroyer")
         while (True):
             x = int(input("Enter x: "))
             if x < 0 or x >= game.boardSize:
@@ -439,13 +445,17 @@ while(game.playGame):
 
         game.fire("player",x,y)
         game.draw("player")
+        game.checkWin()
+        if game.playGame == False:
+            break
 
         x = random.randint(0,10)
         y = random.randint(0,10)
         game.fire("ai",x,y)
         game.draw("player")
 
-
+print()
+print(game.winner)
 
 
 
