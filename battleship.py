@@ -31,138 +31,138 @@ class Game():
             if letter == 'c' :
                 if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1)and self.validSpot(x,y+2) and self.validSpot(x,y+3) and self.validSpot(x,y+4):
                     for i in range(0,5):
-                    	self.playerShipBoard[x][y+i] = letter
+                        self.playerShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1)and self.validSpot(x,y-2) and self.validSpot(x,y-3) and self.validSpot(x,y-4):
                     for i in range(0,5):
-                    	self.playerShipBoard[x][y-i] = letter
+                        self.playerShipBoard[x][y-i] = letter
                 elif direction == 'e' and self.validSpot(x,y) and self.validSpot(x+1,y)and self.validSpot(x+2,y) and self.validSpot(x+3,y) and self.validSpot(x+4,y):
                     for i in range(0,5):
-                    	self.playerShipBoard[x+i][y] = letter
+                        self.playerShipBoard[x+i][y] = letter
                 elif direction == 'w' and self.validSpot(x,y) and self.validSpot(x-1,y)and self.validSpot(x-2,y) and self.validSpot(x-3,y) and self.validSpot(x-4,y):
                     for i in range(0,5):
-                    	self.playerShipBoard[x-i][y] = letter
+                        self.playerShipBoard[x-i][y] = letter
             elif letter == 'b':
                 if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1)and self.validSpot(x,y+2) and self.validSpot(x,y+3):
                     for i in range(0,4):
-                    	self.playerShipBoard[x][y+i] = letter
+                        self.playerShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1)and self.validSpot(x,y-2) and self.validSpot(x,y-3):
                     for i in range(0,4):
-                    	self.playerShipBoard[x][y-i] = letter
+                        self.playerShipBoard[x][y-i] = letter
                 elif direction == 'e' and self.validSpot(x,y) and self.validSpot(x+1,y)and self.validSpot(x+2,y) and self.validSpot(x+3,y):
                     for i in range(0,4):
-                    	self.playerShipBoard[x+i][y] = letter
+                        self.playerShipBoard[x+i][y] = letter
                 elif direction == 'w' and self.validSpot(x,y) and self.validSpot(x-1,y)and self.validSpot(x-2,y) and self.validSpot(x-3,y):
                     for i in range(0,4):
-                    	self.playerShipBoard[x-i][y] = letter
+                        self.playerShipBoard[x-i][y] = letter
             elif letter == 'r':
                 if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1)and self.validSpot(x,y+2):
                     for i in range(0,3):
-                    	self.playerShipBoard[x][y+i] = letter
+                        self.playerShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1)and self.validSpot(x,y-2):
                     for i in range(0,3):
-                    	self.playerShipBoard[x][y-i] = letter
+                        self.playerShipBoard[x][y-i] = letter
                 elif direction == 'e' and self.validSpot(x,y) and self.validSpot(x+1,y)and self.validSpot(x+2,y):
                     for i in range(0,3):
-                    	self.playerShipBoard[x+i][y] = letter
+                        self.playerShipBoard[x+i][y] = letter
                 elif direction == 'w' and self.validSpot(x,y) and self.validSpot(x-1,y)and self.validSpot(x-2,y):
                     for i in range(0,3):
-                    	self.playerShipBoard[x-i][y] = letter
+                        self.playerShipBoard[x-i][y] = letter
             elif letter == 's':
                 if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1)and self.validSpot(x,y+2):
                     for i in range(0,3):
-                    	self.playerShipBoard[x][y+i] = letter
+                        self.playerShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1)and self.validSpot(x,y-2):
                     for i in range(0,3):
-                    	self.playerShipBoard[x][y-i] = letter
+                        self.playerShipBoard[x][y-i] = letter
                 elif direction == 'e' and self.validSpot(x,y) and self.validSpot(x+1,y)and self.validSpot(x+2,y):
                     for i in range(0,3):
-                    	self.playerShipBoard[x+i][y] = letter
+                        self.playerShipBoard[x+i][y] = letter
                 elif direction == 'w' and self.validSpot(x,y) and self.validSpot(x-1,y)and self.validSpot(x-2,y):
                     for i in range(0,3):
-                    	self.playerShipBoard[x-i][y] = letter
+                        self.playerShipBoard[x-i][y] = letter
             elif letter == 'd':
-				if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1):
-					print("placing destroyer, direction north")
+                if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1):
+                    print("placing destroyer, direction north")
                     for i in range(0,2):
-                    	self.playerShipBoard[x][y+i] = letter
+                        self.playerShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1):
-                	print("placing destroyer, direction south")
+                    print("placing destroyer, direction south")
                     for i in range(0,2):
-                    	self.playerShipBoard[x][y-i] = letter
+                        self.playerShipBoard[x][y-i] = letter
                 elif direction == 'e' and self.validSpot(x,y) and self.validSpot(x+1,y):
-                	print("placing destroyer, direction north")
+                    print("placing destroyer, direction north")
                     for i in range(0,2):
-                    	self.playerShipBoard[x+i][y] = letter
+                        self.playerShipBoard[x+i][y] = letter
                 elif direction == 'w' and self.validSpot(x,y) and self.validSpot(x-1,y):
-                	print("placing destroyer, direction north")
+                    print("placing destroyer, direction north")
                     for i in range(0,2):
-                    	self.playerShipBoard[x-i][y] = letter
+                        self.playerShipBoard[x-i][y] = letter
         elif team == "ai":
             if letter == 'c' :
                 if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1)and self.validSpot(x,y+2) and self.validSpot(x,y+3) and self.validSpot(x,y+4):
                     for i in range(0,5):
-                    	self.aiShipBoard[x][y+i] = letter
+                        self.aiShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1)and self.validSpot(x,y-2) and self.validSpot(x,y-3) and self.validSpot(x,y-4):
                     for i in range(0,5):
-                    	self.aiShipBoard[x][y-i] = letter
+                        self.aiShipBoard[x][y-i] = letter
                 elif direction == 'e' and self.validSpot(x,y) and self.validSpot(x+1,y)and self.validSpot(x+2,y) and self.validSpot(x+3,y) and self.validSpot(x+4,y):
                     for i in range(0,5):
-                    	self.aiShipBoard[x+i][y] = letter
+                        self.aiShipBoard[x+i][y] = letter
                 elif direction == 'w' and self.validSpot(x,y) and self.validSpot(x-1,y)and self.validSpot(x-2,y) and self.validSpot(x-3,y) and self.validSpot(x-4,y):
                     for i in range(0,5):
-                    	self.aiShipBoard[x-i][y] = letter
+                        self.aiShipBoard[x-i][y] = letter
             elif letter == 'b':
                 if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1)and self.validSpot(x,y+2) and self.validSpot(x,y+3):
                     for i in range(0,4):
-                    	self.aiShipBoard[x][y+i] = letter
+                        self.aiShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1)and self.validSpot(x,y-2) and self.validSpot(x,y-3):
                     for i in range(0,4):
-                    	self.aiShipBoard[x][y-i] = letter
+                        self.aiShipBoard[x][y-i] = letter
                 elif direction == 'e' and self.validSpot(x,y) and self.validSpot(x+1,y)and self.validSpot(x+2,y) and self.validSpot(x+3,y):
                     for i in range(0,4):
-                    	self.aiShipBoard[x+i][y] = letter
+                        self.aiShipBoard[x+i][y] = letter
                 elif direction == 'w' and self.validSpot(x,y) and self.validSpot(x-1,y)and self.validSpot(x-2,y) and self.validSpot(x-3,y):
                     for i in range(0,4):
-                    	self.aiShipBoard[x-i][y] = letter
+                        self.aiShipBoard[x-i][y] = letter
             elif letter == 'r':
                 if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1)and self.validSpot(x,y+2):
                     for i in range(0,3):
-                    	self.aiShipBoard[x][y+i] = letter
+                        self.aiShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1)and self.validSpot(x,y-2):
                     for i in range(0,3):
-                    	self.aiShipBoard[x][y-i] = letter
+                        self.aiShipBoard[x][y-i] = letter
                 elif direction == 'e' and self.validSpot(x,y) and self.validSpot(x+1,y)and self.validSpot(x+2,y):
                     for i in range(0,3):
-                    	self.aiShipBoard[x+i][y] = letter
+                        self.aiShipBoard[x+i][y] = letter
                 elif direction == 'w' and self.validSpot(x,y) and self.validSpot(x-1,y)and self.validSpot(x-2,y):
                     for i in range(0,3):
-                    	self.aiShipBoard[x-i][y] = letter
+                        self.aiShipBoard[x-i][y] = letter
             elif letter == 's':
                 if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1)and self.validSpot(x,y+2):
                     for i in range(0,3):
-                    	self.aiShipBoard[x][y+i] = letter
+                        self.aiShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1)and self.validSpot(x,y-2):
                     for i in range(0,3):
-                    	self.aiShipBoard[x][y-i] = letter
+                        self.aiShipBoard[x][y-i] = letter
                 elif direction == 'e' and self.validSpot(x,y) and self.validSpot(x+1,y)and self.validSpot(x+2,y):
                     for i in range(0,3):
-                    	self.aiShipBoard[x+i][y] = letter
+                        self.aiShipBoard[x+i][y] = letter
                 elif direction == 'w' and self.validSpot(x,y) and self.validSpot(x-1,y)and self.validSpot(x-2,y):
                     for i in range(0,3):
-                    	self.aiShipBoard[x-i][y] = letter
+                        self.aiShipBoard[x-i][y] = letter
             elif letter == 'd':
                 if direction == 'n' and self.validSpot(x,y) and self.validSpot(x,y+1):
                     for i in range(0,3):
-                    	self.aiShipBoard[x][y+i] = letter
+                        self.aiShipBoard[x][y+i] = letter
                 elif direction == 's' and self.validSpot(x,y) and self.validSpot(x,y-1):
                     for i in range(0,3):
-                    	self.aiShipBoard[x][y-i] = letter
+                        self.aiShipBoard[x][y-i] = letter
                 elif direction == 'e' and self.validSpot(x,y) and self.validSpot(x+1,y):
                     for i in range(0,3):
-                    	self.aiShipBoard[x+i][y] = letter
+                        self.aiShipBoard[x+i][y] = letter
                 elif direction == 'w' and self.validSpot(x,y) and self.validSpot(x-1,y):
                     for i in range(0,3):
-                    	self.aiShipBoard[x-i][y] = letter
+                        self.aiShipBoard[x-i][y] = letter
         return
 
     def fire(self,team,x,y):
