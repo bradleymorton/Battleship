@@ -398,7 +398,7 @@ game.Intro()
 while(game.playGame):
 
     while(True):
-        choose = input("0 random place ships\n1 place ships manually\n>>>")
+        choose = input("Randomly place player ships: 0\nPlace player ships manually: 1\n>>>")
         try:
             choose = int(choose)
             if int(choose) == 0:
@@ -411,17 +411,6 @@ while(game.playGame):
             continue
 
 
-        # if type(choose)==<class 'int'>:
-        #     if int(choose)==0:
-        #         game.randomPlace=True
-        #         break
-        # elif type(choose)==<class 'int'>:
-        #     if int(choose)==1:
-        #         game.randomPlace=False
-        #         break
-        # else:
-        #     continue
-
     if(game.randomPlace==False):
         print("Place your ships\nShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]")
         game.draw("player")
@@ -432,15 +421,28 @@ while(game.playGame):
 
             print("place Carrier")
             while(True):
-                x = int(input("Enter x: "))
-                if x<0 or x>=game.boardSize:
-                    print("try again")
-                    x = int(input("Enter x: "))
+                while(True):
+                    x=input("Enter x: ")
+                    try:
+                        x=int(x)
+                        if x<0 or x>=game.boardSize:
+                            continue
+                        else:
+                            break
+                    except ValueError:
+                        continue
 
-                y = int(input("Enter y: "))
-                if y < 0 or y >= game.boardSize:
-                    print("try again")
-                    y = int(input("Enter y: "))
+                while (True):
+                    y = input("Enter y: ")
+                    try:
+                        y = int(y)
+                        if y < 0 or y >= game.boardSize:
+                            continue
+                        else:
+                            break
+                    except ValueError:
+                        continue
+
 
                 while(True):
                     d = input("Enter dir: ")
@@ -461,16 +463,27 @@ while(game.playGame):
 
             print("Place Battleship")
             while (True):
-                x = int(input("Enter x: "))
-                if x < 0 or x >= game.boardSize:
-                    print("try again")
-                    x = int(input("Enter x: "))
+                while (True):
+                    x = input("Enter x: ")
+                    try:
+                        x = int(x)
+                        if x < 0 or x >= game.boardSize:
+                            continue
+                        else:
+                            break
+                    except ValueError:
+                        continue
 
-                y = int(input("Enter y: "))
-                if y < 0 or y >= game.boardSize:
-                    print("try again")
-                    y = int(input("Enter y: "))
-
+                while (True):
+                    y = input("Enter y: ")
+                    try:
+                        y = int(y)
+                        if y < 0 or y >= game.boardSize:
+                            continue
+                        else:
+                            break
+                    except ValueError:
+                        continue
                 while (True):
                     d = input("Enter dir: ")
                     if d not in ['n', 's', 'e', 'w']:
@@ -490,20 +503,32 @@ while(game.playGame):
                     continue
 
             print("Place Cruiser")
-            while(True):
-                x = int(input("Enter x: "))
-                if x<0 or x>=game.boardSize:
-                    print("try again")
-                    x = int(input("Enter x: "))
+            while (True):
+                while (True):
+                    x = input("Enter x: ")
+                    try:
+                        x = int(x)
+                        if x < 0 or x >= game.boardSize:
+                            continue
+                        else:
+                            break
+                    except ValueError:
+                        continue
 
-                y = int(input("Enter y: "))
-                if y < 0 or y >= game.boardSize:
-                    print("try again")
-                    y = int(input("Enter y: "))
+                while (True):
+                    y = input("Enter y: ")
+                    try:
+                        y = int(y)
+                        if y < 0 or y >= game.boardSize:
+                            continue
+                        else:
+                            break
+                    except ValueError:
+                        continue
 
-                while(True):
+                while (True):
                     d = input("Enter dir: ")
-                    if d not in ['n','s','e','w']:
+                    if d not in ['n', 's', 'e', 'w']:
                         continue
                     else:
                         break
@@ -521,15 +546,27 @@ while(game.playGame):
 
             print("Place Sub")
             while (True):
-                x = int(input("Enter x: "))
-                if x < 0 or x >= game.boardSize:
-                    print("try again")
-                    x = int(input("Enter x: "))
+                while (True):
+                    x = input("Enter x: ")
+                    try:
+                        x = int(x)
+                        if x < 0 or x >= game.boardSize:
+                            continue
+                        else:
+                            break
+                    except ValueError:
+                        continue
 
-                y = int(input("Enter y: "))
-                if y < 0 or y >= game.boardSize:
-                    print("try again")
-                    y = int(input("Enter y: "))
+                while (True):
+                    y = input("Enter y: ")
+                    try:
+                        y = int(y)
+                        if y < 0 or y >= game.boardSize:
+                            continue
+                        else:
+                            break
+                    except ValueError:
+                        continue
 
                 while (True):
                     d = input("Enter dir: ")
@@ -551,15 +588,27 @@ while(game.playGame):
 
             print("Place Destroyer")
             while (True):
-                x = int(input("Enter x: "))
-                if x < 0 or x >= game.boardSize:
-                    print("try again")
-                    x = int(input("Enter x: "))
+                while (True):
+                    x = input("Enter x: ")
+                    try:
+                        x = int(x)
+                        if x < 0 or x >= game.boardSize:
+                            continue
+                        else:
+                            break
+                    except ValueError:
+                        continue
 
-                y = int(input("Enter y: "))
-                if y < 0 or y >= game.boardSize:
-                    print("try again")
-                    y = int(input("Enter y: "))
+                while (True):
+                    y = input("Enter y: ")
+                    try:
+                        y = int(y)
+                        if y < 0 or y >= game.boardSize:
+                            continue
+                        else:
+                            break
+                    except ValueError:
+                        continue
 
                 while (True):
                     d = input("Enter dir: ")
@@ -720,16 +769,30 @@ while(game.playGame):
     while(True):
 
         # player fire
+        print("Fire at x,y")
         while (True):
-            print("Fire at x,y")
-            x = int(input("Enter x: "))
-            if x<0 or x>=game.boardSize:
-                print("try again")
-                x = int(input("Enter x: "))
-            y = int(input("Enter y: "))
-            if y < 0 or y >= game.boardSize:
-                print("try again")
-                y = int(input("Enter y: "))
+            while (True):
+                x = input("Enter x: ")
+                try:
+                    x = int(x)
+                    if x < 0 or x >= game.boardSize:
+                        continue
+                    else:
+                        break
+                except ValueError:
+                    continue
+
+            while (True):
+                y = input("Enter y: ")
+                try:
+                    y = int(y)
+                    if y < 0 or y >= game.boardSize:
+                        continue
+                    else:
+                        break
+                except ValueError:
+                    continue
+
             if [x,y] in game.playerFireList:
                 print("you already fired there")
                 continue
