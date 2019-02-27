@@ -7,8 +7,15 @@ class TestBoard(unittest, TestCase)
 if __name__ == '__main__':
     unittest.main()
 
-'''
-class TestStringMethods(unittest.TestCase):
+
+class testBattleship(unittest.TestCase):
+
+
+	game = Game()
+
+	game.place
+
+
 
     def test_upper(self):
         self.assertEqual('foo'.upper(), 'FOO')
@@ -27,6 +34,4 @@ class TestStringMethods(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
     
-'''
-
 
