@@ -9,8 +9,7 @@ import random
 
 #todo
 # 1. better ai fire
-# 2. option to randomly place player ships
-# 3. refactor
+# 2. refactor
 
 
 class Game():
@@ -52,7 +51,7 @@ class Game():
         print(" |____/ \__,_|\__|\__|_|\___| |____/|_| |_|_| .__/   ")
         print("                                            |_|      ")
         print("         A Console Based Game of Death!              ")
-
+        print("      By: Bradley Morton and George Meier            ")
 
     def validSpotPlayer(self, x, y): # checks if on board and water
         valid = False
@@ -398,11 +397,30 @@ game.Intro()
 
 while(game.playGame):
 
-    choose = int(input("0 random place ships\n1 place ships manually\n>>>"))
-    if choose==0:
-        game.randomPlace=True
-    elif choose==1:
-        game.randomPlace=False
+    while(True):
+        choose = input("0 random place ships\n1 place ships manually\n>>>")
+        try:
+            choose = int(choose)
+            if int(choose) == 0:
+                 game.randomPlace=True
+                 break
+            elif int(choose)==1:
+                 game.randomPlace=False
+                 break
+        except ValueError:
+            continue
+
+
+        # if type(choose)==<class 'int'>:
+        #     if int(choose)==0:
+        #         game.randomPlace=True
+        #         break
+        # elif type(choose)==<class 'int'>:
+        #     if int(choose)==1:
+        #         game.randomPlace=False
+        #         break
+        # else:
+        #     continue
 
     if(game.randomPlace==False):
         print("Place your ships\nShips = [['c','c','c','c','c'],['b','b','b','b'],['r','r','r'],['s','s','s'],['d','d']]")
