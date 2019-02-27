@@ -16,6 +16,18 @@ George: fully playable draft Mon Feb 25 23:30 to 00:30
 
 George: added message when either player sinks a ship (type included)- Tuesday Feb 26 01:00 to 02:00
 
-Bradley and George: pair programming, refactoring and planning presentation, working on unit tests: 14:15-
+Bradley and George: pair programming, refactoring and planning presentation, working on unit tests: 14:15-15:30
 
-running total time: 14h
+Difficulty point rate- we only got through our first feature, which is a functional game, which we set at 5 difficulty points. Over 15ish hours, that turns into about 1/3 velocity. 
+
+running total time: A lot
+
+
+
+Bradley commentary:
+I liked working with George on this. He's a good partner, and we get along great. TDD is tedious, particularly when you don't understand how to use any testing frameworks in your language- python3 is new to both of us as of this semester, so we basically wrote test cases ourselves to test for functionality. Those are in test.py. Pair programming is great. It's a fantastic way to catch bugs, and it's a great way to program, particularly on new issues, like making games or using a new language. Programming with George over my shoulder is perhaps not quite as fast in lines/time interval as programming alone, but the overall development time is far lower given how many bugs were caught at the time of writing. Part of the problem I've found with debugging my own code is the challenge of trying to read it to understand it doesn't work as well when I wrote it, while George has no such bias for what I write. Version control is, of course, generally great and should be used whenever possible. 
+
+George commentary:
+This project was a challenge for me.  Being new to python and games and software development I only was successful by following the examples laid out in this class.  Pair programming is great. while coding with Brad we resisted the urge to hack and try things, instead favoring discussion.  This also lead to better names and cleaner flow of control.  PyCharm IDE helped with longer descriptive names and frequent git commits.  Commits happened every new line almost.  TTD was informally used but extreamly helpful.  While much of the tests were print outs and just trying new input, we testeed each new feature such as ship placemnt or firing until there were no errors before moving on to a new task.  The test framwork was our own invention in test.py where we confirmed our tests with code.  Overall I would recommend the process of pair programming using TTD in an IDE that allows frequent commits to any software engineer.
+
+The area that needs attention the most is refactoring and propper use of OOP.  There seems to be a lot of duplicate code which could be fixed with refactoring and having more classes than the game class which we used. 
